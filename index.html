@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Crump Financial — Get matched with a vetted financial professional</title>
+<style>
+ :root{
+   --navy:#0d2440; --navy2:#13345c; --gold:#c8a44d; --green:#1a7f4b;
+   --ink:#16202e; --mut:#5b6677; --line:#e6e9ee; --bg:#f6f8fb; --white:#fff;
+ }
+ *{box-sizing:border-box;margin:0;padding:0}
+ html{scroll-behavior:smooth}
+ body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--white);line-height:1.55}
+ a{color:inherit;text-decoration:none}
+ .wrap{max-width:1100px;margin:0 auto;padding:0 22px}
+ /* nav */
+ header{position:sticky;top:0;background:rgba(13,36,64,.97);backdrop-filter:blur(8px);z-index:50}
+ nav{display:flex;align-items:center;gap:26px;height:64px;color:#fff}
+ .brand{font-weight:800;font-size:19px;letter-spacing:.3px;margin-right:auto;display:flex;align-items:center;gap:9px}
+ .brand .dot{width:12px;height:12px;border-radius:3px;background:var(--gold);display:inline-block}
+ nav a.link{color:#cdd7e4;font-size:14px;font-weight:600}
+ nav a.link:hover{color:#fff}
+ .btn{background:var(--gold);color:#0d2440;font-weight:700;padding:10px 18px;border-radius:9px;font-size:14px;border:none;cursor:pointer;display:inline-block}
+ .btn:hover{filter:brightness(1.06)}
+ .btn.lg{padding:14px 26px;font-size:16px}
+ .btn.ghost{background:transparent;border:1.5px solid var(--gold);color:var(--gold)}
+ @media(max-width:760px){nav a.link{display:none}}
+ /* hero */
+ .hero{background:linear-gradient(160deg,var(--navy),var(--navy2));color:#fff;padding:78px 0 88px}
+ .hero h1{font-size:46px;line-height:1.1;font-weight:800;letter-spacing:-.5px;max-width:760px}
+ .hero h1 .hl{color:var(--gold)}
+ .hero p.sub{font-size:19px;color:#c7d2e0;margin-top:20px;max-width:620px}
+ .hero .cta{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap}
+ .trust{margin-top:34px;color:#93a3b8;font-size:13px;display:flex;gap:22px;flex-wrap:wrap}
+ .trust b{color:#fff}
+ @media(max-width:760px){.hero h1{font-size:33px}}
+ /* sections */
+ section{padding:72px 0}
+ .eyebrow{color:var(--green);font-weight:800;font-size:13px;letter-spacing:1.3px;text-transform:uppercase}
+ h2{font-size:32px;font-weight:800;letter-spacing:-.4px;margin-top:8px}
+ .lead{color:var(--mut);font-size:17px;margin-top:10px;max-width:640px}
+ /* steps */
+ .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:42px}
+ .step{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:24px}
+ .step .n{width:34px;height:34px;border-radius:9px;background:var(--navy);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:15px}
+ .step h3{font-size:17px;margin:14px 0 6px}
+ .step p{color:var(--mut);font-size:14px}
+ @media(max-width:860px){.steps{grid-template-columns:repeat(2,1fr)}}
+ @media(max-width:480px){.steps{grid-template-columns:1fr}}
+ /* specialties */
+ .specs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:42px}
+ .spec{border:1px solid var(--line);border-radius:16px;padding:24px;transition:.15s}
+ .spec:hover{border-color:var(--gold);box-shadow:0 8px 26px rgba(13,36,64,.08);transform:translateY(-2px)}
+ .spec .ic{font-size:26px}
+ .spec h3{font-size:17px;margin:12px 0 5px}
+ .spec p{color:var(--mut);font-size:14px}
+ .spec .cred{display:inline-block;margin-top:12px;font-size:11.5px;font-weight:700;color:var(--green);background:#e9f5ee;border-radius:20px;padding:3px 11px}
+ @media(max-width:820px){.specs{grid-template-columns:repeat(2,1fr)}}
+ @media(max-width:480px){.specs{grid-template-columns:1fr}}
+ /* why */
+ .why{background:var(--navy);color:#fff}
+ .why .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:42px}
+ .why h3{font-size:18px;color:var(--gold);margin-bottom:8px}
+ .why p{color:#c7d2e0;font-size:15px}
+ @media(max-width:760px){.why .grid{grid-template-columns:1fr;gap:24px}}
+ /* form */
+ .formcard{background:var(--bg);border:1px solid var(--line);border-radius:20px;padding:34px;margin-top:42px;max-width:640px}
+ .formcard label{display:block;font-weight:700;font-size:13.5px;margin:16px 0 6px}
+ .formcard input,.formcard select,.formcard textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:15px;font-family:inherit;background:#fff}
+ .formcard textarea{min-height:90px;resize:vertical}
+ .formcard .row{display:flex;gap:16px}
+ .formcard .row>div{flex:1}
+ .secnote{font-size:12.5px;color:var(--mut);margin-top:14px;display:flex;gap:8px;align-items:flex-start}
+ @media(max-width:560px){.formcard .row{flex-direction:column;gap:0}}
+ /* footer */
+ footer{background:#08182b;color:#8ea0b6;font-size:13px;padding:46px 0}
+ footer .top{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:22px}
+ footer .brand{color:#fff;font-size:17px}
+ footer .disc{border-top:1px solid #14304d;padding-top:20px;line-height:1.6;max-width:820px}
+ footer a.link{color:#b9c7d8}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="wrap">
+  <nav>
+   <a href="#" class="brand"><span class="dot"></span>Crump Financial</a>
+   <a href="#how" class="link">How it works</a>
+   <a href="#pros" class="link">Find a Pro</a>
+   <a href="#why" class="link">Why us</a>
+   <a href="#start" class="btn">Get Started</a>
+  </nav>
+ </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+ <div class="wrap">
+  <h1>Get matched with a <span class="hl">vetted financial professional</span> — for exactly what you need.</h1>
+  <p class="sub">Crump Financial connects you with licensed tax, retirement, debt, and investment experts. See a free snapshot of where you stand, then choose the pro who fits — you stay in control.</p>
+  <div class="cta">
+   <a href="#start" class="btn lg">Get my free baseline</a>
+   <a href="#how" class="btn lg ghost">See how it works</a>
+  </div>
+  <div class="trust">
+   <span><b>Licensed</b> professionals only</span>
+   <span><b>You choose</b> who helps you</span>
+   <span><b>Your data</b> stays private &amp; secure</span>
+  </div>
+ </div>
+</div>
+
+<!-- HOW -->
+<section id="how">
+ <div class="wrap">
+  <div class="eyebrow">How it works</div>
+  <h2>Four simple steps</h2>
+  <p class="lead">No pressure, no jargon. We help you understand where you are, then connect you to the right licensed expert.</p>
+  <div class="steps">
+   <div class="step"><div class="n">1</div><h3>Tell us where you stand</h3><p>Share your goals and a basic financial picture through a secure intake.</p></div>
+   <div class="step"><div class="n">2</div><h3>Get your free baseline</h3><p>A clear, factual snapshot — income, debt, savings — so you know your starting point.</p></div>
+   <div class="step"><div class="n">3</div><h3>Choose your pro</h3><p>Browse vetted, licensed professionals by specialty and pick the right fit.</p></div>
+   <div class="step"><div class="n">4</div><h3>Get expert guidance</h3><p>Your chosen pro reviews your information and provides personalized recommendations.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- SPECIALTIES -->
+<section id="pros" style="background:var(--bg)">
+ <div class="wrap">
+  <div class="eyebrow">Find a Pro</div>
+  <h2>Help in every corner of your money</h2>
+  <p class="lead">Every professional on Crump Financial is independently licensed and verified before they ever see your information.</p>
+  <div class="specs">
+   <div class="spec"><div class="ic">🧾</div><h3>Tax &amp; IRS Help</h3><p>Filing, back taxes, and representation before the IRS.</p><span class="cred">EA / CPA</span></div>
+   <div class="spec"><div class="ic">🪙</div><h3>Retirement Planning</h3><p>401(k), IRA, rollovers, and a plan to retire with confidence.</p><span class="cred">CFP / RIA</span></div>
+   <div class="spec"><div class="ic">💳</div><h3>Debt Payoff</h3><p>A real strategy to kill high-interest debt and free up cash flow.</p><span class="cred">Advisor</span></div>
+   <div class="spec"><div class="ic">📈</div><h3>Investing</h3><p>Build wealth with guidance from a registered investment adviser.</p><span class="cred">Series 65 / RIA</span></div>
+   <div class="spec"><div class="ic">🛡️</div><h3>Insurance &amp; Protection</h3><p>Life, disability, and the right coverage — without the sales pitch.</p><span class="cred">Licensed Producer</span></div>
+   <div class="spec"><div class="ic">🏠</div><h3>Real Estate &amp; Lending</h3><p>Buying, refinancing, VA loans, and building rental income.</p><span class="cred">Licensed Pro</span></div>
+  </div>
+ </div>
+</section>
+
+<!-- WHY -->
+<section id="why" class="why">
+ <div class="wrap">
+  <div class="eyebrow" style="color:var(--gold)">Why Crump Financial</div>
+  <h2 style="color:#fff">Honest guidance, on your terms</h2>
+  <div class="grid">
+   <div><h3>Vetted &amp; licensed</h3><p>We verify every professional's credentials and license before they join — so you never gamble on who you're trusting.</p></div>
+   <div><h3>You're in control</h3><p>You see your numbers first and choose your own pro. No one is assigned to you, and no one pressures you.</p></div>
+   <div><h3>Your data stays secure</h3><p>Sensitive documents move through a protected channel — shared only with the professional you choose.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- GET STARTED -->
+<section id="start">
+ <div class="wrap">
+  <div class="eyebrow">Get Started</div>
+  <h2>Your free baseline starts here</h2>
+  <p class="lead">Tell us a little about what you need. This first step just captures your goals — we'll follow up with a secure link for any documents.</p>
+  <form class="formcard" onsubmit="event.preventDefault();this.querySelector('.done').style.display='block';">
+   <div class="row">
+    <div><label>First name</label><input type="text" placeholder="Eric" required></div>
+    <div><label>Last name</label><input type="text" placeholder="Crump" required></div>
+   </div>
+   <label>Email</label><input type="email" placeholder="you@email.com" required>
+   <label>What do you need help with?</label>
+   <select>
+    <option>Taxes / IRS</option>
+    <option>Retirement planning</option>
+    <option>Paying off debt</option>
+    <option>Investing &amp; building wealth</option>
+    <option>Insurance &amp; protection</option>
+    <option>Real estate / lending</option>
+    <option>Not sure yet — help me figure it out</option>
+   </select>
+   <label>Anything you'd like your pro to know? (optional)</label>
+   <textarea placeholder="A sentence or two about your situation or goals…"></textarea>
+   <div class="secnote">🔒 <span>We never ask for SSNs or account numbers on this form. Documents are collected later through a secure, encrypted channel — shared only with the professional you choose.</span></div>
+   <button class="btn lg" type="submit" style="margin-top:20px">Request my free baseline</button>
+   <p class="done" style="display:none;color:var(--green);font-weight:700;margin-top:16px">✓ Thanks! This is a preview — once we connect the form, this will reach Crump Financial directly.</p>
+  </form>
+ </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+ <div class="wrap">
+  <div class="top">
+   <div class="brand">Crump Financial</div>
+   <div>
+    <a href="#how" class="link">How it works</a> &nbsp;·&nbsp;
+    <a href="#pros" class="link">Find a Pro</a> &nbsp;·&nbsp;
+    <a href="#start" class="link">Get Started</a>
+   </div>
+  </div>
+  <div class="disc">
+   <b>crumpfinancialllc.com</b> &nbsp;|&nbsp; © Crump Financial LLC. All rights reserved.<br><br>
+   Crump Financial is a referral platform that connects individuals with independent, licensed financial professionals. Crump Financial does not itself provide financial, tax, legal, or investment advice, and is not a registered investment adviser, accounting firm, or insurance agency. All professionals are independently licensed and solely responsible for the advice and services they provide. Compensation arrangements between Crump Financial and participating professionals are disclosed to clients as required by law.
+  </div>
+ </div>
+</footer>
+
+</body>
+</html>
