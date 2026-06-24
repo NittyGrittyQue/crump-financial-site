@@ -164,27 +164,28 @@
   <div class="eyebrow">Get Started</div>
   <h2>Your free baseline starts here</h2>
   <p class="lead">Tell us a little about what you need. This first step just captures your goals — we'll follow up with a secure link for any documents.</p>
-  <form class="formcard" onsubmit="event.preventDefault();this.querySelector('.done').style.display='block';">
+  <form class="formcard" id="leadForm">
    <div class="row">
-    <div><label>First name</label><input type="text" placeholder="Eric" required></div>
-    <div><label>Last name</label><input type="text" placeholder="Crump" required></div>
+    <div><label>First name</label><input type="text" name="firstName" placeholder="Eric" required></div>
+    <div><label>Last name</label><input type="text" name="lastName" placeholder="Crump"></div>
    </div>
-   <label>Email</label><input type="email" placeholder="you@email.com" required>
+   <label>Email</label><input type="email" name="email" placeholder="you@email.com" required>
    <label>What do you need help with?</label>
-   <select>
-    <option>Taxes / IRS</option>
-    <option>Retirement planning</option>
-    <option>Paying off debt</option>
-    <option>Investing &amp; building wealth</option>
-    <option>Insurance &amp; protection</option>
-    <option>Real estate / lending</option>
-    <option>Not sure yet — help me figure it out</option>
+   <select name="need">
+    <option value="taxes">Taxes / IRS</option>
+    <option value="retirement">Retirement planning</option>
+    <option value="debt">Paying off debt</option>
+    <option value="investing">Investing &amp; building wealth</option>
+    <option value="insurance">Insurance &amp; protection</option>
+    <option value="realestate">Real estate / lending</option>
+    <option value="unsure">Not sure yet — help me figure it out</option>
    </select>
    <label>Anything you'd like your pro to know? (optional)</label>
-   <textarea placeholder="A sentence or two about your situation or goals…"></textarea>
+   <textarea name="notes" placeholder="A sentence or two about your situation or goals…"></textarea>
    <div class="secnote">🔒 <span>We never ask for SSNs or account numbers on this form. Documents are collected later through a secure, encrypted channel — shared only with the professional you choose.</span></div>
-   <button class="btn lg" type="submit" style="margin-top:20px">Request my free baseline</button>
-   <p class="done" style="display:none;color:var(--green);font-weight:700;margin-top:16px">✓ Thanks! This is a preview — once we connect the form, this will reach Crump Financial directly.</p>
+   <button class="btn lg" id="leadBtn" type="submit" style="margin-top:20px">Request my free baseline</button>
+   <p class="done" style="display:none;color:var(--green);font-weight:700;margin-top:16px">✓ Thanks! Your request reached Crump Financial — we'll follow up at the email you gave us with your free baseline and a secure link for any documents.</p>
+   <p class="err" style="display:none;color:#b00020;font-weight:700;margin-top:16px"></p>
   </form>
  </div>
 </section>
@@ -206,6 +207,32 @@
   </div>
  </div>
 </footer>
+
+<script>
+(function(){
+  var API="https://app.crumpfinancialllc.com/api/intake";
+  var form=document.getElementById("leadForm");
+  if(!form)return;
+  form.addEventListener("submit",async function(e){
+    e.preventDefault();
+    var btn=document.getElementById("leadBtn");
+    var done=form.querySelector(".done"), err=form.querySelector(".err");
+    err.style.display="none"; done.style.display="none";
+    var fd=new FormData(form);
+    var payload={firstName:(fd.get("firstName")||"").trim(),lastName:(fd.get("lastName")||"").trim(),
+                 email:(fd.get("email")||"").trim(),need:fd.get("need")||"",notes:(fd.get("notes")||"").trim()};
+    btn.disabled=true; var label=btn.textContent; btn.textContent="Sending…";
+    try{
+      var r=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+      var d=await r.json().catch(function(){return{};});
+      if(r.ok&&d.ok){ form.reset(); done.style.display="block"; done.scrollIntoView({behavior:"smooth",block:"center"}); }
+      else { err.textContent=(d.error||"Something went wrong. Please try again or email us directly."); err.style.display="block"; }
+    }catch(ex){
+      err.textContent="Couldn't reach the server. Please check your connection and try again."; err.style.display="block";
+    }finally{ btn.disabled=false; btn.textContent=label; }
+  });
+})();
+</script>
 
 </body>
 </html>
